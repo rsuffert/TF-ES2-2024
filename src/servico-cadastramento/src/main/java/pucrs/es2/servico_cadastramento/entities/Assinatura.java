@@ -21,11 +21,11 @@ public class Assinatura {
     private Long codigo; // codigo da assinatura
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo")
+    @JoinColumn(name = "codapp")
     private Aplicativo aplicativo; // aplicativo assinado
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo")
+    @JoinColumn(name = "codcli")
     private Cliente cliente; // cliente proprietario da assinatura
 
     @Column(name = "inicio_vigencia")

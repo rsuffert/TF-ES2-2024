@@ -13,8 +13,8 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] `ServicoPagamentos`.
 * Implementação do microsserviço `ServicoCadastramento`: cadastramento e manutenção dos dados relativos a clientes, aplicativos e assinaturas (quando uma nova assinatura é cadastrada, o cliente ganha 7 dias grátis).
     - [X] Entidades de domínio Aplicativo, Cliente e Assinatura, conforme enunciado do trabalho;
-    - [ ] Banco de dados de cadastro;
-    - [ ] Script de inicialização para popular o banco de dados com ao menos 10 clientes, 5 aplicativos diferentes e 5 assinaturas;
+    - [X] Banco de dados de cadastro;
+    - [X] Script de inicialização para popular o banco de dados com ao menos 10 clientes, 5 aplicativos diferentes e 5 assinaturas;
     - [ ] **Endpoint /servcad/clientes [GET]**: lista todos os clientes cadastrados;
     - [ ] **Endpoint /servcad/aplicativos [GET]**: lista todos os aplicativos cadastrados;
     - [ ] **Endpoint /servcad/assinaturas [POST]**: cria uma assinatura;
