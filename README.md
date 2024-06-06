@@ -18,10 +18,10 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] Entidades de domínio Aplicativo, Cliente e Assinatura, conforme enunciado do trabalho;
     - [X] Banco de dados de cadastro;
     - [X] Script de inicialização para popular o banco de dados com ao menos 10 clientes, 5 aplicativos diferentes e 5 assinaturas;
-    - [ ] **Endpoint /servcad/clientes [GET]**: lista todos os clientes cadastrados;
-    - [ ] **Endpoint /servcad/aplicativos [GET]**: lista todos os aplicativos cadastrados;
-    - [ ] **Endpoint /servcad/assinaturas [POST]**: cria uma assinatura;
-    - [ ] **Endpoint /servcad/aplicativos/{idAplicativo} [PATCH]**: atualiza o custo mensal do aplicativo;
+    - [X] **Endpoint /servcad/clientes [GET]**: lista todos os clientes cadastrados;
+    - [X] **Endpoint /servcad/aplicativos [GET]**: lista todos os aplicativos cadastrados;
+    - [X] **Endpoint /servcad/assinaturas [POST]**: cria uma assinatura;
+    - [X] **Endpoint /servcad/aplicativos/{idAplicativo} [PATCH]**: atualiza o custo mensal do aplicativo;
     - [ ] **Endpoint /servcad/assinaturas/{tipo} [GET]**: retorna todas as assinaturas do tipo indicado (TODAS, ATIVAS ou CANCELADAS);
     - [ ] **Endpoint /servcad/asscli/{codcli} [GET]**: retorna todas as assinaturas do cliente informado;
     - [ ] **Endpoint /servcad/assapp/{codapp} [GET]**: retorna a lista de assinaturas do aplicativo informado;
