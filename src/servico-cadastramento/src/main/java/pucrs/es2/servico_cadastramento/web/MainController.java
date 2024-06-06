@@ -24,7 +24,9 @@ import pucrs.es2.servico_cadastramento.dtos.RequisicaoAssinaturaDTO;
 import pucrs.es2.servico_cadastramento.dtos.RequisicaoAtualizarPrecoAppDTO;
 import pucrs.es2.servico_cadastramento.entities.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,21 +69,23 @@ public class MainController {
 
     @PostMapping("/servcad/assinaturas")
     @CrossOrigin("*")
-    public ResponseEntity<AssinaturaDTO> criarAssinatura(@RequestBody RequisicaoAssinaturaDTO reqAssinaturaDto) {
+    public ResponseEntity<?> criarAssinatura(@RequestBody RequisicaoAssinaturaDTO reqAssinaturaDto) {
         // buscar o aplicativo e o cliente correspondentes aos codigos fornecidos
         Optional<Aplicativo> aplicativo = aplicativoRepository.findById(reqAssinaturaDto.codigoAplicativo());
         Optional<Cliente> cliente = clienteRepository.findById(reqAssinaturaDto.codigoCliente());
 
         // verificar se eles existem (se a busca retornou alguma coisa)
-        if (!aplicativo.isPresent() || !cliente.isPresent()) return ResponseEntity.notFound().build();
+        if (!aplicativo.isPresent()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Código de aplicativo inexistente");
+        if (!cliente.isPresent()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Código de cliente inexistente");
 
         // se tudo certo, instanciar a assinatura e salvar na base de dados
         Assinatura assinatura = new Assinatura(aplicativo.get(), cliente.get());
         assinaturaRepository.save(assinatura);
 
         // retornar a assinatura criada
+        String status = LocalDate.now().isAfter(assinatura.getFimVigencia())? "CANCELADA" : "ATIVA"; // se a data atual for depois da data de termino, esta cancelado; senao esta ativo
         return ResponseEntity.status(HttpStatus.CREATED).body(new AssinaturaDTO(assinatura.getCodigo(), assinatura.getCliente().getNome(), 
-                                                              assinatura.getAplicativo().getNome(), assinatura.getInicioVigencia(), assinatura.getFimVigencia()));
+                                                              assinatura.getAplicativo().getNome(), assinatura.getInicioVigencia(), assinatura.getFimVigencia(), status));
     }
 
     @PatchMapping("/servcad/aplicativos/{codigoAplicativo}")
@@ -102,5 +106,59 @@ public class MainController {
 
         // retornar sucesso
         return ResponseEntity.ok("Valor atualizado com sucesso");
+    }
+
+    @GetMapping("/servcad/assinaturas/{tipo}")
+    @CrossOrigin("*")
+    public ResponseEntity<?> getAssinaturasPorTipo(@PathVariable String tipo) {
+        // padronizar em minusculas o tipo recebido como parametro
+        tipo = tipo.toLowerCase();
+
+        // buscar os objetos de assinatura do tipo especificado no banco
+        List<Assinatura> assinaturas = new LinkedList<>();
+        switch(tipo) {
+            case "todas":      assinaturas = assinaturaRepository.findAll();                     break;
+            case "ativas":     assinaturas = assinaturaRepository.findActive(LocalDate.now());   break;
+            case "canceladas": assinaturas = assinaturaRepository.findInactive(LocalDate.now()); break;
+            default:
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tipo inválido. Tipos suportados: 'TODAS', 'ATIVAS' e 'CANCELADAS'");
+        }
+
+        // criar lista de DTOs a partir dos objetos de assinatura buscados no banco
+        List<AssinaturaDTO> assinaturasDto = new ArrayList<>(assinaturas.size());
+        LocalDate hoje = LocalDate.now();
+        for (Assinatura ass : assinaturas) {
+            String status = hoje.isAfter(ass.getFimVigencia())? "CANCELADA" : "ATIVA"; // se a data atual for depois da data de termino, esta cancelado; senao esta ativo
+            assinaturasDto.add(new AssinaturaDTO(ass.getCodigo(), ass.getCliente().getNome(), ass.getAplicativo().getNome(), 
+                               ass.getInicioVigencia(), ass.getFimVigencia(), status));
+        }
+
+        // retornar a resposta de sucesso
+        return ResponseEntity.ok(assinaturasDto);
+    }
+
+    @GetMapping("/servcad/asscli/{codcli}")
+    @CrossOrigin("*")
+    public ResponseEntity<?> getAssinaturasPorCliente(@PathVariable Long codcli) {
+        // obter o registro do cliente informado
+        Optional<Cliente> cliente = clienteRepository.findById(codcli);
+
+        // verificar se o cliente existe
+        if (!cliente.isPresent()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Código de cliente inexistente");
+
+        // se tudo certo, extrair o objeto do cliente e recuperar suas assinaturas
+        List<Assinatura> assinaturas = cliente.get().getAssinaturas();
+
+        // criar a lista de DTOs a partir dos objetos de assinatura buscados no banco
+        List<AssinaturaDTO> assinaturasDto = new ArrayList<>(assinaturas.size());
+        LocalDate hoje = LocalDate.now();
+        for (Assinatura ass : assinaturas) {
+            String status = hoje.isAfter(ass.getFimVigencia())? "CANCELADA" : "ATIVA"; // se a data atual for depois da data de termino, esta cancelado; senao esta ativo
+            assinaturasDto.add(new AssinaturaDTO(ass.getCodigo(), ass.getCliente().getNome(), ass.getAplicativo().getNome(),
+                               ass.getInicioVigencia(), ass.getFimVigencia(), status));
+        }
+
+        // retornar a resposta de sucesso
+        return ResponseEntity.ok(assinaturasDto);
     }
 }
