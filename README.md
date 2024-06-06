@@ -8,9 +8,9 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 
 ## 2. Tarefas de desenvolvimento do trabalho
 * Criação dos arquétipos dos microsserviços no [Spring Initializr](https://start.spring.io/):
-    - [ ] `ServicoCadastramento`;
-    - [ ] `ServicoAssinaturasValidas`;
-    - [ ] `ServicoPagamentos`.
+    - [X] `ServicoCadastramento`;
+    - [X] `ServicoAssinaturasValidas`;
+    - [X] `ServicoPagamentos`.
 * Implementação do microsserviço `ServicoCadastramento`: cadastramento e manutenção dos dados relativos a clientes, aplicativos e assinaturas (quando uma nova assinatura é cadastrada, o cliente ganha 7 dias grátis).
     - [ ] Entidades de domínio Aplicativo, Cliente e Assinatura, conforme enunciado do trabalho;
     - [ ] Banco de dados de cadastro;
