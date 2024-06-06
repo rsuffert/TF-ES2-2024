@@ -3,7 +3,7 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 
 # Resumo das tarefas do trabalho
 ## 1. Tarefas de planejamento do trabalho
-- [] Criação dos diagramas ER dos bancos de dados;
+- [X] Criação dos diagramas ER dos bancos de dados;
 - [] Criação do diagrama de componentes do sistema (microsserviços).
 
 ## 2. Tarefas de desenvolvimento do trabalho
