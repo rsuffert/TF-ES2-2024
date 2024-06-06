@@ -7,6 +7,9 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 - [X] Criação do diagrama de componentes do sistema (microsserviços).
 
 ## 2. Tarefas de desenvolvimento do trabalho
+* Implementação do broker de comunicação entre os três microsserviços:
+    - [X] Escolha do broker: RabbitMQ no CloudAMQP;
+    - [ ] Integração com os microsserviços do sistema.
 * Criação dos arquétipos dos microsserviços no [Spring Initializr](https://start.spring.io/):
     - [X] `ServicoCadastramento`;
     - [X] `ServicoAssinaturasValidas`;
@@ -28,16 +31,13 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [ ] Possui cache interna de assinaturas. Se a consulta do aplicativo der hit, retorna a informação armazenada na cache; se der miss, pergunta ao `ServicoCadastramento` e registra a resposta na cache;
     - [ ] Deve ser programado como um microsserviço do qual é possível ter várias instâncias;
     - [ ] **Endpoint /assinvalidas/{codass}**: retorna se a assinatura fornecida permanece válida;
-    - [ ] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`.
+    - [ ] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`).
 * Implementação do microsserviço `ServicoPagamentos`: manter o registro dos pagamentos efetuados (este serviço será notificado pelos bancos conveniados cada vez que um pagamento é efetuado).
     - [ ] Entidade de domínio Pagamento, conforme enunciado do trabalho;
     - [ ] Banco de dados de pagamentos efetuados;
     - [ ] **Endpoint /registrarpagamento [POST]**: solicita o registro de um pagamento. Deverá (1) armazenar o pagamento no banco e (2) gerar os eventos assíncronos abaixo para notificar os microsserviços interessados;
     - [ ] **Evento PagamentoServicoCadastramento (gerar)**: notifica o `ServicoCadastramento` que um pagamento foi efetuado;
     - [ ] **Evento PagamentoServicoAssinaturaValida (gerar)**: notifica o `ServicoAssinaturaValida` que um pagamento foi efetuado.
-* Implementação do broker de comunicação entre os três microsserviços:
-    - [ ] Escolha do broker;
-    - [ ] Integração com os microsserviços do sistema.
 
 **OBSERVAÇÃO**: a definição do corpo da requisição e do JSON de resposta para cada endpoint, bem como as informações do corpo dos eventos, estão especificados no enunciado do trabalho.
 
