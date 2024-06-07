@@ -15,8 +15,8 @@ INSERT INTO Aplicativo (nome, custo_mensal) VALUES ('Amazon Prime', 12.99);
 INSERT INTO Aplicativo (nome, custo_mensal) VALUES ('Hulu', 11.99);
 INSERT INTO Aplicativo (nome, custo_mensal) VALUES ('Disney+', 8.99);
 
-INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (1, 1, '2024-06-01', '2024-06-08');
-INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (2, 2, '2024-06-02', '2024-06-09');
-INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (3, 3, '2024-06-03', '2024-06-10');
-INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (4, 4, '2024-06-04', '2024-06-11');
-INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (5, 5, '2024-06-05', '2024-06-12');
+INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (1, 1, '2024-06-7', '2024-06-14');
+INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (2, 2, '2024-06-7', '2024-06-14');
+INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (3, 3, '2024-06-7', '2024-06-14');
+INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (4, 4, '2024-06-7', '2024-06-14');
+INSERT INTO Assinatura (codapp, codcli, inicio_vigencia, fim_vigencia) VALUES (5, 5, '2024-06-7', '2024-06-14');

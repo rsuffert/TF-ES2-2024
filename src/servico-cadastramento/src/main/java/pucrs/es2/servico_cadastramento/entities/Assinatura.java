@@ -48,12 +48,13 @@ public class Assinatura {
     public Cliente getCliente() { return this.cliente; }
     public LocalDate getInicioVigencia() { return this.inicioVigencia; }
     public LocalDate getFimVigencia() { return this.fimVigencia; }
-    public boolean prorrogarVigencia(LocalDate dataPagamento, int dias) throws IllegalArgumentException {
+    public void prorrogarVigencia(LocalDate dataPagamento, int dias) throws IllegalArgumentException {
         if (dias <= 0) throw new IllegalArgumentException("A quantidade de dias para prorrogar a vigência deve ser positiva");
-        if (LocalDate.now().isAfter(fimVigencia)) { // somente prorroga se a assinatura ja nao estiver expirada
-            fimVigencia = dataPagamento.plusDays(dias);
-            return true;
-        }
-        return false;
+        fimVigencia = dataPagamento.plusDays(dias);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Assinatura [codigo = %d, aplicativo = %s, cliente = %s, inicioVigencia = %s, fimVigencia = %s]", codigo, aplicativo.getNome(), cliente.getNome(), inicioVigencia, fimVigencia);
     }
 }
