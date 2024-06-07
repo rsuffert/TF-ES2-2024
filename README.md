@@ -27,11 +27,11 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] **Endpoint /servcad/assapp/{codapp} [GET]**: retorna a lista de assinaturas do aplicativo informado;
     - [X] **Evento PagamentoServicoCadastramento (observar)**: quando for recebido, deverá atualizar a validade da assinatura paga na base de dados.
 * Implementação do microsserviço `ServicoAssinaturasValidas`: por questoes de performance, responder rapidamente para os aplicativos se uma determinada assinatura continua ativa ou não.
-    - [ ] Entidade de domínio Assinatura, conforme enunciado do trabalho;
+    - [X] Entidade de domínio Assinatura, conforme enunciado do trabalho;
     - [ ] Possui cache interna de assinaturas. Se a consulta do aplicativo der hit, retorna a informação armazenada na cache; se der miss, pergunta ao `ServicoCadastramento` e registra a resposta na cache;
     - [ ] Deve ser programado como um microsserviço do qual é possível ter várias instâncias;
-    - [ ] **Endpoint /assinvalidas/{codass}**: retorna se a assinatura fornecida permanece válida;
-    - [ ] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`).
+    - [X] **Endpoint /assinvalidas/{codass}**: retorna se a assinatura fornecida permanece válida;
+    - [X] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`).
 * Implementação do microsserviço `ServicoPagamentos`: manter o registro dos pagamentos efetuados (este serviço será notificado pelos bancos conveniados cada vez que um pagamento é efetuado).
     - [X] Entidade de domínio Pagamento, conforme enunciado do trabalho;
     - [X] Banco de dados de pagamentos efetuados;
