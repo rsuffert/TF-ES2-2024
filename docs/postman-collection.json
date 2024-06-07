@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "8911a4b5-12d0-4b03-ae2b-a62a480b7767",
+		"name": "Sistema de Assinaturas (TF ES2)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26762481"
+	},
+	"item": [
+		{
+			"name": "Listar clientes",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Listar aplicativos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/servcad/aplicativos"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Assinatura",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"codigoCliente\": 9,\n    \"codigoAplicativo\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/servcad/assinaturas"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar preço de assinatura de aplicativo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar assinaturas por tipo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar assinatura de cliente",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar assinaturas de aplicativo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar pagamento de assinatura",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar validade de assinatura",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8101/assinvalidas/2"
+			},
+			"response": []
+		}
+	]
+}

@@ -28,7 +28,7 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] **Evento PagamentoServicoCadastramento (observar)**: quando for recebido, deverá atualizar a validade da assinatura paga na base de dados.
 * Implementação do microsserviço `ServicoAssinaturasValidas`: por questoes de performance, responder rapidamente para os aplicativos se uma determinada assinatura continua ativa ou não.
     - [X] Entidade de domínio Assinatura, conforme enunciado do trabalho;
-    - [ ] Possui cache interna de assinaturas. Se a consulta do aplicativo der hit, retorna a informação armazenada na cache; se der miss, pergunta ao `ServicoCadastramento` e registra a resposta na cache;
+    - [X] Possui cache interna de assinaturas. Se a consulta do aplicativo der hit, retorna a informação armazenada na cache; se der miss, pergunta ao `ServicoCadastramento` e registra a resposta na cache;
     - [ ] Deve ser programado como um microsserviço do qual é possível ter várias instâncias;
     - [X] **Endpoint /assinvalidas/{codass}**: retorna se a assinatura fornecida permanece válida;
     - [X] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`).
