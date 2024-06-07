@@ -36,8 +36,8 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] Entidade de domínio Pagamento, conforme enunciado do trabalho;
     - [X] Banco de dados de pagamentos efetuados;
     - [X] **Endpoint /registrarpagamento [POST]**: solicita o registro de um pagamento. Deverá (1) armazenar o pagamento no banco e (2) gerar os eventos assíncronos abaixo para notificar os microsserviços interessados;
-    - [ ] **Evento PagamentoServicoCadastramento (gerar)**: notifica o `ServicoCadastramento` que um pagamento foi efetuado;
-    - [ ] **Evento PagamentoServicoAssinaturaValida (gerar)**: notifica o `ServicoAssinaturaValida` que um pagamento foi efetuado.
+    - [X] **Evento PagamentoServicoCadastramento (gerar)**: notifica o `ServicoCadastramento` que um pagamento foi efetuado;
+    - [X] **Evento PagamentoServicoAssinaturaValida (gerar)**: notifica o `ServicoAssinaturaValida` que um pagamento foi efetuado.
 
 **OBSERVAÇÃO**: a definição do corpo da requisição e do JSON de resposta para cada endpoint, bem como as informações do corpo dos eventos, estão especificados no enunciado do trabalho.
 
