@@ -33,9 +33,9 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [ ] **Endpoint /assinvalidas/{codass}**: retorna se a assinatura fornecida permanece válida;
     - [ ] **Evento PagamentoServicoAssinaturaValida (observar)**: remover da cache a entrada correspondente à assinatura paga para manter a consistência (na próxima consulta, solicitará o dado atualizado ao `ServicoCadastramento`).
 * Implementação do microsserviço `ServicoPagamentos`: manter o registro dos pagamentos efetuados (este serviço será notificado pelos bancos conveniados cada vez que um pagamento é efetuado).
-    - [ ] Entidade de domínio Pagamento, conforme enunciado do trabalho;
-    - [ ] Banco de dados de pagamentos efetuados;
-    - [ ] **Endpoint /registrarpagamento [POST]**: solicita o registro de um pagamento. Deverá (1) armazenar o pagamento no banco e (2) gerar os eventos assíncronos abaixo para notificar os microsserviços interessados;
+    - [X] Entidade de domínio Pagamento, conforme enunciado do trabalho;
+    - [X] Banco de dados de pagamentos efetuados;
+    - [X] **Endpoint /registrarpagamento [POST]**: solicita o registro de um pagamento. Deverá (1) armazenar o pagamento no banco e (2) gerar os eventos assíncronos abaixo para notificar os microsserviços interessados;
     - [ ] **Evento PagamentoServicoCadastramento (gerar)**: notifica o `ServicoCadastramento` que um pagamento foi efetuado;
     - [ ] **Evento PagamentoServicoAssinaturaValida (gerar)**: notifica o `ServicoAssinaturaValida` que um pagamento foi efetuado.
 
