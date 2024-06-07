@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rabbitmq.client.RpcClient.Response;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -160,5 +158,30 @@ public class MainController {
 
         // retornar a resposta de sucesso
         return ResponseEntity.ok(assinaturasDto);
+    }
+
+    @GetMapping("/servcad/assapp/{codapp}")
+    @CrossOrigin("*")
+    public ResponseEntity<?> getAssinaturasPorAplicativo(@PathVariable Long codapp) {
+        // obter o registro do aplicativo informado
+        Optional<Aplicativo> aplicativo = aplicativoRepository.findById(codapp);
+
+        // verificar se o aplicativo existe
+        if (!aplicativo.isPresent()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Código de aplicativo inexistente");
+
+        // se der tudo certo, extrair o objeto do aplicativo e recuperar suas assinaturas
+        List<Assinatura> assinaturas = aplicativo.get().getAssinaturas();
+
+        // criar a lista de DTOs a partir dos objetos de assinatura buscados no banco
+        List<AssinaturaDTO> assinaturasDTO = new ArrayList<>(assinaturas.size());
+        LocalDate hoje = LocalDate.now();
+        for (Assinatura ass : assinaturas) {
+            String status = hoje.isAfter(ass.getFimVigencia())? "CANCELADA" : "ATIVA"; // se a data atual for depois da data de termino, esta cancelado; senao esta ativo
+            assinaturasDTO.add(new AssinaturaDTO(ass.getCodigo(), ass.getCliente().getNome(), ass.getAplicativo().getNome(), 
+                               ass.getInicioVigencia(), ass.getFimVigencia(), status));
+        }
+
+        // retornar a resposta de sucesso
+        return ResponseEntity.ok(assinaturasDTO);
     }
 }

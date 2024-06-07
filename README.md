@@ -24,7 +24,7 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] **Endpoint /servcad/aplicativos/{idAplicativo} [PATCH]**: atualiza o custo mensal do aplicativo;
     - [X] **Endpoint /servcad/assinaturas/{tipo} [GET]**: retorna todas as assinaturas do tipo indicado (TODAS, ATIVAS ou CANCELADAS);
     - [X] **Endpoint /servcad/asscli/{codcli} [GET]**: retorna todas as assinaturas do cliente informado;
-    - [ ] **Endpoint /servcad/assapp/{codapp} [GET]**: retorna a lista de assinaturas do aplicativo informado;
+    - [X] **Endpoint /servcad/assapp/{codapp} [GET]**: retorna a lista de assinaturas do aplicativo informado;
     - [ ] **Evento PagamentoServicoCadastramento (observar)**: quando for recebido, deverá atualizar a validade da assinatura paga na base de dados.
 * Implementação do microsserviço `ServicoAssinaturasValidas`: por questoes de performance, responder rapidamente para os aplicativos se uma determinada assinatura continua ativa ou não.
     - [ ] Entidade de domínio Assinatura, conforme enunciado do trabalho;
