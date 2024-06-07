@@ -48,10 +48,10 @@ public class Assinatura {
     public Cliente getCliente() { return this.cliente; }
     public LocalDate getInicioVigencia() { return this.inicioVigencia; }
     public LocalDate getFimVigencia() { return this.fimVigencia; }
-    public boolean prorrogarVigencia(int dias) throws IllegalArgumentException {
+    public boolean prorrogarVigencia(LocalDate dataPagamento, int dias) throws IllegalArgumentException {
         if (dias <= 0) throw new IllegalArgumentException("A quantidade de dias para prorrogar a vigência deve ser positiva");
         if (LocalDate.now().isAfter(fimVigencia)) { // somente prorroga se a assinatura ja nao estiver expirada
-            fimVigencia.plusDays(dias);
+            fimVigencia = dataPagamento.plusDays(dias);
             return true;
         }
         return false;

@@ -25,7 +25,7 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
     - [X] **Endpoint /servcad/assinaturas/{tipo} [GET]**: retorna todas as assinaturas do tipo indicado (TODAS, ATIVAS ou CANCELADAS);
     - [X] **Endpoint /servcad/asscli/{codcli} [GET]**: retorna todas as assinaturas do cliente informado;
     - [X] **Endpoint /servcad/assapp/{codapp} [GET]**: retorna a lista de assinaturas do aplicativo informado;
-    - [ ] **Evento PagamentoServicoCadastramento (observar)**: quando for recebido, deverá atualizar a validade da assinatura paga na base de dados.
+    - [X] **Evento PagamentoServicoCadastramento (observar)**: quando for recebido, deverá atualizar a validade da assinatura paga na base de dados.
 * Implementação do microsserviço `ServicoAssinaturasValidas`: por questoes de performance, responder rapidamente para os aplicativos se uma determinada assinatura continua ativa ou não.
     - [ ] Entidade de domínio Assinatura, conforme enunciado do trabalho;
     - [ ] Possui cache interna de assinaturas. Se a consulta do aplicativo der hit, retorna a informação armazenada na cache; se der miss, pergunta ao `ServicoCadastramento` e registra a resposta na cache;
