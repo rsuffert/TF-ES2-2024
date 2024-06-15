@@ -12,5 +12,5 @@ RUN mvn clean package
 FROM eclipse-temurin:21-jre-alpine AS prod
 WORKDIR /workspace/app
 COPY --from=build /workspace/app/target/*.jar /workspace/app/app.jar
-EXPOSE 8100
+EXPOSE 80
 ENTRYPOINT ["java", "-jar", "/workspace/app/app.jar"]
