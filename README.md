@@ -42,6 +42,6 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 **OBSERVAÇÃO**: a definição do corpo da requisição e do JSON de resposta para cada endpoint, bem como as informações do corpo dos eventos, estão especificados no enunciado do trabalho.
 
 ## 3. Tarefas de implantação do trabalho
-- [ ] Criação do diagrama de implantação do sistema;
-- [ ] Criação de documento informando o passo a passo para implantar o sistema na nuvem;
+- [X] Criação do diagrama de implantação do sistema;
+- [X] Criação de documento informando o passo a passo para implantar o sistema na nuvem;
 - [ ] Gravar vídeo demonstrando a execução do sistema na nuvem.
