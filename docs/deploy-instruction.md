@@ -7,11 +7,11 @@ For deploying the application to AWS, we'll be using the **AWS CLI** on Linux. M
 1. Build the Docker images of the three microsservices by running `docker build -t <image_name> .` at the root directory of each of the microsservices (or replace the `.` with the path to the Dockerfile).
 2. Define the following environment variables so the AWS CLI knows your credentials to access your AWS account.
 
-`export AWS_ACCESS_KEY_ID=<your_access_key_id>`
-
-`export AWS_SECRET_ACCESS_KEY=<your_secret_access_key>`
-
-`export AWS_SESSION_TOKEN=<your_session_token>`
+```bash
+export AWS_ACCESS_KEY_ID=<your_access_key_id>
+export AWS_SECRET_ACCESS_KEY=<your_secret_access_key>
+export AWS_SESSION_TOKEN=<your_session_token>
+```
 
 3. Create an **Elastic Container Registry (ECR)** instance for each microsservice. The following command creates an ECR instance. After running it, a JSON response will be printed.
 
@@ -19,7 +19,8 @@ For deploying the application to AWS, we'll be using the **AWS CLI** on Linux. M
 
 4. On the **AWS Management Console**, open the ECR service, click on the name of the repository, click on "Permissions" on the left-hand panel, select "Edit JSON policy" and replace the lines with the JSON below. After that click "Save". Do that for each ECR instance created.
 
-`{
+```json
+{
   "Version": "2008-10-17",
   "Statement": [
     {
@@ -28,7 +29,8 @@ For deploying the application to AWS, we'll be using the **AWS CLI** on Linux. M
       "Action": "ecr:*"
     }
   ]
-}`
+}
+```
 
 5. Back to your terminal, set a temporary variable with your Account ID:
 
@@ -56,7 +58,8 @@ By now, you should have the Docker images of your microsservices in the cloud, e
 
 2. Create a task definition for each of the microsservices of the system with the command below.
 
-`aws ecs register-task-definition --cli-input-json '{
+```bash
+aws ecs register-task-definition --cli-input-json '{
   "family": "<any_name_for_your_task_definition>",
   "containerDefinitions": [
     {
@@ -66,9 +69,10 @@ By now, you should have the Docker images of your microsservices in the cloud, e
       "cpu": <vCPU_units>
     }
   ]
-}'`
+}'
+```
 
-3. Launch EC2 instcance(s) for your microsservices following the steps below.
+3. Launch EC2 instance(s) for your microsservices following the steps below.
     - Generate an SSH key pair: `aws ec2 create-key-pair --key-name <key_name> --query 'KeyMaterial' --output text > <key_name>.pem` and `chmod 400 <key_name>.pem`;
     - Create the EC2 instance: `aws ec2 run-instances --image-id <ami_id> --instance-type <instance_type> --key-name <key_pair_name>`;
         - Depending on the characteristics of your tasks, you may create a single EC2 instance whose instance type has enough resources for the most resource-consuming task, and ECS will manage the scheduling of the services (you'll create them from the task definitions later) in the given pool of EC2 instances.
