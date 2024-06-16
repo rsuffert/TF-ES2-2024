@@ -68,9 +68,11 @@ aws ecs register-task-definition --cli-input-json '{
       "memory": <memory_in_MiB>,
       "cpu": <vCPU_units>,
       "portMappings": [
-        "containerPort": <port_number>,
-        "hostPort": <port_number>,
-        "protocol": "tcp"
+        {
+          "containerPort": <port_number>,
+          "hostPort": <port_number>,
+          "protocol": "tcp"
+        }
       ]
     }
   ]
@@ -83,7 +85,7 @@ aws ecs register-task-definition --cli-input-json '{
         - Depending on the characteristics of your tasks, you may create a single EC2 instance whose instance type has enough resources for the most resource-consuming task, and ECS will manage the scheduling of the services (you'll create them from the task definitions later) in the given pool of EC2 instances.
     - Check the ID of the security group associated with the new instance: `aws ec2 describe-instances --instance-ids <instance_id> --query "Reservations[].Instances[].SecurityGroups[*].GroupId" --output text`
     - Modify the security group to allow SSH inbound traffic: `aws ec2 authorize-security-group-ingress --group-id <security_group_id> --protocol tcp --port 22 --cidr <your_public_ip_address>/32`;
-    - Modify the security group to allow inbound traffic to your application: ``aws ec2 authorize-security-group-ingress --group-id <security_group_id> --protocol tcp --port <your_service_port> --cidr 0.0.0.0/0`
+    - Modify the security group to allow inbound traffic to your application: `aws ec2 authorize-security-group-ingress --group-id <security_group_id> --protocol tcp --port <your_service_port> --cidr 0.0.0.0/0`
     - Before moving on, make sure your instances are running: `aws ec2 describe-instances --instance-ids <instance_id> --query "Reservations[*].Instances[*].State.Name" --output text`
 
 4. Register the EC2 instances created on step 3 to the ECS cluster you created on step 1 to make them available to run tasks.
@@ -107,4 +109,4 @@ aws ecs register-task-definition --cli-input-json '{
 
 ## Additional steps
 
-For production environments, you may also set up logging and monitoring, load balancing etc.
+For production environments, you may also set up logging and monitoring, load balancing, service registry etc.
