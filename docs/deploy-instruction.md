@@ -66,7 +66,12 @@ aws ecs register-task-definition --cli-input-json '{
       "name": "<any_name_for_the_container_the_task_will_run>",
       "image": "<the_uri_of_the_image_in_the_ecr_instance>",
       "memory": <memory_in_MiB>,
-      "cpu": <vCPU_units>
+      "cpu": <vCPU_units>,
+      "portMappings": [
+        "containerPort": <port_number>,
+        "hostPort": <port_number>,
+        "protocol": "tcp"
+      ]
     }
   ]
 }'
