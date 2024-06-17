@@ -4,7 +4,9 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 # Resumo das tarefas do trabalho
 ## 1. Tarefas de planejamento do trabalho
 - [X] Criação dos diagramas ER dos bancos de dados;
-- [X] Criação do diagrama de componentes do sistema (microsserviços).
+- [X] Criação do diagrama de componentes do sistema (microsserviços);
+- [X] Criação do diagrama de implantação do sistema;
+- [X] Criação de documento informando o passo a passo para implantar o sistema na nuvem;
 
 ## 2. Tarefas de desenvolvimento do trabalho
 * Implementação do broker de comunicação entre os três microsserviços:
@@ -41,7 +43,8 @@ Este trabalho foi desenvolvido como o trabalho final da disciplina de Engenharia
 
 **OBSERVAÇÃO**: a definição do corpo da requisição e do JSON de resposta para cada endpoint, bem como as informações do corpo dos eventos, estão especificados no enunciado do trabalho.
 
-## 3. Tarefas de implantação do trabalho
-- [X] Criação do diagrama de implantação do sistema;
-- [X] Criação de documento informando o passo a passo para implantar o sistema na nuvem;
-- [ ] Gravar vídeo demonstrando a execução do sistema na nuvem.
+## 3. Finalização
+- [ ] Revisar se todos os requisitos do sistema foram cumpridos e se os diagramas estão nos conformes;
+- [ ] Implantar o sistema na nuvem;
+- [ ] Gravar vídeo demonstrando a execução do sistema na nuvem;
+- [ ] Finalizar relatório PDF e enviar.
